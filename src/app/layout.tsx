@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 
 import './globals.css'
-import Header from './Header' 
-import Footer from './Footer'
-import Hero from './Hero'; 
+
 
 export const metadata: Metadata = {
   title: 'Astrology Website',

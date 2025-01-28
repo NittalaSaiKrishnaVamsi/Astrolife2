@@ -6,7 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import "../app/globals.css";
 
-// Define the structure of formData and errors
+// Define the structure of formData
 interface FormData {
   name: string;
   email: string;
@@ -18,8 +18,6 @@ interface FormData {
   timeOfBirth: string;
   phoneNumber: string;
 }
-
-interface Errors extends Partial<FormData> {}
 
 const UserSignup: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -34,7 +32,7 @@ const UserSignup: React.FC = () => {
     phoneNumber: "",
   });
 
-  const [errors, setErrors] = useState<Errors>({});
+  const [errors, setErrors] = useState<Partial<FormData>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
@@ -49,7 +47,7 @@ const UserSignup: React.FC = () => {
   };
 
   const validateForm = (): boolean => {
-    const newErrors: Errors = {};
+    const newErrors: Partial<FormData> = {};
 
     if (!formData.name.trim()) newErrors.name = "Name is required.";
     if (!formData.email.trim()) {
@@ -196,9 +194,9 @@ const UserSignup: React.FC = () => {
                       placeholder={`Enter your ${fieldLabel.toLowerCase()}`}
                     />
                   )}
-                  {errors[key as keyof Errors] && (
+                  {errors[key as keyof FormData] && (
                     <p className="text-red-600 text-sm mt-1">
-                      {errors[key as keyof Errors]}
+                      {errors[key as keyof FormData]}
                     </p>
                   )}
                 </div>
