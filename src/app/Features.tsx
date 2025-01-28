@@ -1,12 +1,9 @@
 import React from 'react';
 import {
   MdOutlineArticle,
-  MdOutlineChatBubbleOutline,
-  MdOutlineLocalOffer,
-  MdOutlineScale,
   MdOutlineSupportAgent,
-  MdOutlineVerifiedUser,
-} from 'react-icons/md'; // Import icons from react-icons
+  MdOutlineScale,
+} from 'react-icons/md'; // Import only the used icons
 
 const Features = () => {
   const features = [
@@ -25,13 +22,13 @@ const Features = () => {
       title: 'Daily Horoscopes',
       description: 'Receive daily astrological insights and predictions tailored to your zodiac sign.',
     },
-    // ... other features
+    //... other features
   ];
 
   return (
     <section className="features bg-gradient-to-b to-white py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* ... (heading and subtitle) ... */}
+        {/*... (heading and subtitle)... */}
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature) => (
