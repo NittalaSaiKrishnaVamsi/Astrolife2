@@ -21,7 +21,7 @@ const AstroOffers: React.FC = () => {
               src="/images/astrologer-consulting.jpg" // Replace with a relevant image
               alt="Astrologer Consultation"
               className="w-full h-56 object-cover"
-              width={640}   
+              width={640}  
               height={860}
             />
             <div className="p-6">
@@ -66,9 +66,6 @@ const AstroOffers: React.FC = () => {
         {/* Testimonials (Optional) */}
         <div className="mt-16">
           <div className="text-center">
-            {/* Testimonials */}
-        <div className="mt-16">
-          <div className="text-center">
             <h2 className="text-2xl font-bold text-gray-900">What Our Clients Say</h2>
           </div>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -85,7 +82,7 @@ const AstroOffers: React.FC = () => {
                   />
                 </div>
                 <div className="ml-4">
-                  <p className="text-base font-medium text-gray-900">"The free consultation was incredibly insightful! The astrologer provided valuable guidance and helped me understand my challenges with a fresh perspective."</p>
+                  <p className="text-base font-medium text-gray-900">&quot;The free consultation was incredibly insightful! The astrologer provided valuable guidance and helped me understand my challenges with a fresh perspective.&quot;</p>
                   <p className="mt-1 text-sm text-gray-500">- Sarah J.</p>
                 </div>
               </div>
@@ -104,7 +101,7 @@ const AstroOffers: React.FC = () => {
                   />
                 </div>
                 <div className="ml-4">
-                  <p className="text-base font-medium text-gray-900">"I was amazed by the accuracy of the astrologer's predictions. They provided clarity and helped me make important decisions about my career."</p>
+                  <p className="text-base font-medium text-gray-900">&quot;I was amazed by the accuracy of the astrologer&apos;s predictions. They provided clarity and helped me make important decisions about my career.&quot;</p> 
                   <p className="mt-1 text-sm text-gray-500">- John D.</p>
                 </div>
               </div>
@@ -123,17 +120,15 @@ const AstroOffers: React.FC = () => {
                   />
                 </div>
                 <div className="ml-4">
-                  <p className="text-base font-medium text-gray-900">"The Pooja service was a truly spiritual experience. I felt a deep sense of peace and connection. Thank you for offering such a meaningful service."</p>
+                  <p className="text-base font-medium text-gray-900">&quot;The Pooja service was a truly spiritual experience. I felt a deep sense of peace and connection. Thank you for offering such a meaningful service.&quot;</p>
                   <p className="mt-1 text-sm text-gray-500">- Maria S.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-          </div>
 
-          {/* Add your testimonial component or code here */}
-        </div>
+        {/* Add your testimonial component or code here */}
       </div>
     </div>
   );

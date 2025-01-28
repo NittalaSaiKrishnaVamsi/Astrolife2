@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Header from '../app/Header'; 
 import Footer from '../app/Footer';
 import Image from 'next/image';
-import { KundliData } from '../app/types'; // Assuming you have types defined
+ // Assuming you have types defined
 
 // Define interface for formData
 interface FormData {

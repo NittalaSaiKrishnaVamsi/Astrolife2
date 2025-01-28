@@ -39,14 +39,14 @@ const DNAAstrology: React.FC = () => {
             At AstroLife, we offer an AI-powered platform that provides personalized AI horoscope readings,
             AI Kundli generation, and consultations with AI astrologers. Our cutting-edge AI technology analyzes
             vast amounts of astrological data to deliver accurate and customized predictions and insights.
-            Whether you're looking for an AI Kundli that incorporates the latest astrological algorithms or an
+            Whether you&apos;re looking for an AI Kundli that incorporates the latest astrological algorithms or an
             AI astrologer who can provide instant, precise answers to your questions, AstroLife is your go-to destination.
           </p>
 
           <p>
             Our AI astrology services combine the wisdom of traditional astrology with the power of Artificial
             Intelligence, ensuring that you receive the most accurate and insightful readings available. Embrace
-            the future with our AI-enabled astrology, where technology meets tradition, to guide you through life's
+            the future with our AI-enabled astrology, where technology meets tradition, to guide you through life&apos;s
             uncertainties.
           </p>
         </div>

@@ -42,7 +42,7 @@ const AstrologyConsultation: React.FC = () => {
 
           <p>
             Surely, not everything in life should revolve around money, so at AstroLife, besides online astrology, we also organize various events that help one get a better understanding of online astrology prediction and more related themes. 
-            These events range from free astrology predictions sessions to live events involving Aartis and Pujas that happen across India at some of the most renowned temples. It's a way for us to connect with people.
+            These events range from free astrology predictions sessions to live events involving Aartis and Pujas that happen across India at some of the most renowned temples. It&apos;s a way for us to connect with people.
           </p>
         </div>
       </div>

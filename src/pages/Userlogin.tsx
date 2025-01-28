@@ -78,7 +78,7 @@ const UserLogin: React.FC = () => {
     Home
   </Link>
   <Link
-    href="/signup" 
+    href="/UserSignup" 
     className="bg-white text-orange-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-md transition duration-200"
   >
     Signup
