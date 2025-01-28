@@ -105,7 +105,7 @@ const LoginPage = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-3xl font-bold text-orange-800 mt-4"
           >
-            Astrologer's Login
+            Astrologer&apos;s Login
           </motion.h1>
         </div>
         <motion.form

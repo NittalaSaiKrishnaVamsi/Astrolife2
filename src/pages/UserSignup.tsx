@@ -34,15 +34,17 @@ const UserSignup: React.FC = () => {
 
   const [errors, setErrors] = useState<Partial<FormData>>({});
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { id, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [id]: value,
+      [id as keyof FormData]: value,
     }));
     setErrors((prevState) => ({
       ...prevState,
-      [id]: "",
+      [id as keyof FormData]: "",
     }));
   };
 
@@ -175,7 +177,7 @@ const UserSignup: React.FC = () => {
                   {fieldType === "select" ? (
                     <select
                       id={key}
-                      value={(formData as any)[key]}
+                      value={formData[key as keyof FormData] || ""}
                       onChange={handleChange}
                       className="flex-1 p-2 bg-transparent outline-none text-black placeholder-black border-2 border-orange-800 rounded-lg w-full"
                     >
@@ -188,7 +190,7 @@ const UserSignup: React.FC = () => {
                     <input
                       type={fieldType}
                       id={key}
-                      value={(formData as any)[key]}
+                      value={formData[key as keyof FormData] || ""}
                       onChange={handleChange}
                       className="flex-1 p-2 bg-transparent outline-none text-black placeholder-black border-2 border-orange-800 rounded-lg w-full"
                       placeholder={`Enter your ${fieldLabel.toLowerCase()}`}
