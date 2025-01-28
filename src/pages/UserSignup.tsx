@@ -6,8 +6,23 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import "../app/globals.css";
 
+// Define the structure of formData and errors
+interface FormData {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  gender: string;
+  dateOfBirth: string;
+  placeOfBirth: string;
+  timeOfBirth: string;
+  phoneNumber: string;
+}
+
+interface Errors extends Partial<FormData> {}
+
 const UserSignup: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     password: "",
@@ -19,84 +34,50 @@ const UserSignup: React.FC = () => {
     phoneNumber: "",
   });
 
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    gender: "",
-    dateOfBirth: "",
-    placeOfBirth: "",
-    timeOfBirth: "",
-    phoneNumber: "",
-  });
+  const [errors, setErrors] = useState<Errors>({});
 
-  const handleChange = (e: { target: { id: any; value: any; }; }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
-    setFormData({
-    ...formData,
+    setFormData((prevState) => ({
+      ...prevState,
       [id]: value,
-    });
-    setErrors({
-    ...errors,
+    }));
+    setErrors((prevState) => ({
+      ...prevState,
       [id]: "",
-    });
+    }));
   };
 
-  const validateForm = () => {
-    const newErrors = {};
+  const validateForm = (): boolean => {
+    const newErrors: Errors = {};
 
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required.";
-    }
-
+    if (!formData.name.trim()) newErrors.name = "Name is required.";
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid.";
     }
-
     if (!formData.password.trim()) {
       newErrors.password = "Password is required.";
     } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters long.";
+      newErrors.password = "Password must be at least 6 characters.";
     }
-
-    if (formData.password!== formData.confirmPassword) {
+    if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match.";
     }
-
-    if (!formData.gender.trim()) {
-      newErrors.gender = "Gender is required.";
-    }
-
-    if (!formData.dateOfBirth.trim()) {
-      newErrors.dateOfBirth = "Date of birth is required.";
-    }
-
-    if (!formData.placeOfBirth.trim()) {
-      newErrors.placeOfBirth = "Place of birth is required.";
-    }
-
-    if (!formData.timeOfBirth.trim()) {
-      newErrors.timeOfBirth = "Time of birth is required.";
-    }
-
-    if (!formData.phoneNumber.trim()) {
-      newErrors.phoneNumber = "Phone number is required.";
-    }
-    // You might want to add more specific phone number validation here
-    // using a regular expression to check the format
+    if (!formData.gender.trim()) newErrors.gender = "Gender is required.";
+    if (!formData.dateOfBirth.trim()) newErrors.dateOfBirth = "Date of birth is required.";
+    if (!formData.placeOfBirth.trim()) newErrors.placeOfBirth = "Place of birth is required.";
+    if (!formData.timeOfBirth.trim()) newErrors.timeOfBirth = "Time of birth is required.";
+    if (!formData.phoneNumber.trim()) newErrors.phoneNumber = "Phone number is required.";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (validateForm()) {
-      // Proceed with signup logic (e.g., send data to server)
       console.log("Form submitted with data:", formData);
       alert("Signup successful!");
     }
@@ -124,7 +105,7 @@ const UserSignup: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-20 flex flex-col items-center justify-center w-full">
-        {/* Home and Login Buttons */}
+        {/* Navigation */}
         <div className="absolute top-4 right-4 flex space-x-4">
           <Link
             href="/"
@@ -155,14 +136,9 @@ const UserSignup: React.FC = () => {
               height={150}
               className="mx-auto h-20 w-auto"
             />
-            <motion.h1
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-3xl font-bold text-orange-800 mt-4"
-            >
+            <h1 className="text-3xl font-bold text-orange-800 mt-4">
               User Signup
-            </motion.h1>
+            </h1>
           </motion.div>
 
           <motion.form
@@ -172,26 +148,23 @@ const UserSignup: React.FC = () => {
             className="space-y-6"
             onSubmit={handleSubmit}
           >
-            {/* Form Fields */}
             {Object.keys(formData).map((key) => {
               const fieldType =
                 key === "gender"
-                ? "select"
-                : key.includes("password")
-                ? "password"
-                : key.includes("email")
-                ? "email"
-                : key.includes("phoneNumber")
-                ? "tel"
-                : key.includes("dateOfBirth")
-                ? "date"
-                : key.includes("timeOfBirth")
-                ? "time"
-                : "text";
+                  ? "select"
+                  : key.includes("password")
+                  ? "password"
+                  : key.includes("email")
+                  ? "email"
+                  : key.includes("phoneNumber")
+                  ? "tel"
+                  : key.includes("dateOfBirth")
+                  ? "date"
+                  : key.includes("timeOfBirth")
+                  ? "time"
+                  : "text";
 
-              const fieldLabel = key
-              .replace(/([A-Z])/g, " $1")
-              .toUpperCase();
+              const fieldLabel = key.replace(/([A-Z])/g, " $1").toUpperCase();
 
               return (
                 <div key={key} className="relative">
@@ -201,51 +174,32 @@ const UserSignup: React.FC = () => {
                   >
                     {fieldLabel}
                   </label>
-                  {fieldType === "select"? (
+                  {fieldType === "select" ? (
                     <select
                       id={key}
-                      value={formData[key]}
+                      value={(formData as any)[key]}
                       onChange={handleChange}
                       className="flex-1 p-2 bg-transparent outline-none text-black placeholder-black border-2 border-orange-800 rounded-lg w-full"
                     >
-                      <option value="">Select {fieldLabel}</option>
+                      <option value="">Select Gender</option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                       <option value="other">Other</option>
                     </select>
-                  ): (
-                    <div className="flex items-center border-2 border-orange-800 rounded-lg overflow-hidden">
-                      {/* Optional Icon */}
-                      {key === "name" && (
-                        <span className="p-2 text-black">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                            />
-                          </svg>
-                        </span>
-                      )}
-                      <input
-                        type={fieldType}
-                        id={key}
-                        value={formData[key]}
-                        onChange={handleChange}
-                        className="flex-1 p-2 bg-transparent outline-none text-black placeholder-black"
-                        placeholder={`Enter your ${key}`}
-                      />
-                    </div>
+                  ) : (
+                    <input
+                      type={fieldType}
+                      id={key}
+                      value={(formData as any)[key]}
+                      onChange={handleChange}
+                      className="flex-1 p-2 bg-transparent outline-none text-black placeholder-black border-2 border-orange-800 rounded-lg w-full"
+                      placeholder={`Enter your ${fieldLabel.toLowerCase()}`}
+                    />
                   )}
-                  {errors[key] && (
-                    <p className="text-red-600 text-sm mt-1">{errors[key]}</p>
+                  {errors[key as keyof Errors] && (
+                    <p className="text-red-600 text-sm mt-1">
+                      {errors[key as keyof Errors]}
+                    </p>
                   )}
                 </div>
               );
