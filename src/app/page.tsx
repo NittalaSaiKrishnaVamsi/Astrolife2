@@ -6,7 +6,6 @@ import Hero from './Hero';
 import Features from './Features';
 import InteractiveSection from './InteractiveSection';
 import Experts from './Experts';
-import MobileApp from './MobileApp';
 import Footer from './Footer';
 import SocialMediaSidebar from './SocialMediaSidebar';
 import AstroOffers from './AstroOffers';
@@ -14,8 +13,7 @@ import CosmicJourney from './CosmicJourney';
 import DNAAstrology from './DNAAstrology';
 import WHYASTROLOGY from './WHYASTROLOGY';
 import AstrologyConsultation from './AstrologyConsultation';
-import ContactForm from './ContactForm';
-import DailyHoroscope from './DailyHoroscope'; // Import the DailyHoroscope component
+import ContactForm from './ContactForm'; // Import the DailyHoroscope component
 import Carousel from './Carousel';
 
 
