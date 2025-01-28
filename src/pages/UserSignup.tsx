@@ -31,7 +31,7 @@ const UserSignup: React.FC = () => {
     phoneNumber: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { id: any; value: any; }; }) => {
     const { id, value } = e.target;
     setFormData({
     ...formData,
