@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "opportune-sylph-424309-p6",
+  "private_key_id": "33486398dc2da80483655e946f77bef2976b8f8c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDApjhYLIlb8NeY\np498eTyPImPs5+skY4zzekPHDTAlZUuc9YMmnuMqd/Paz/zz2Nf3CKTCzq2x7TxH\n8WSMrAvna2rPVuuxumIfthMjtU2tFRuPuxLgtsQYU4d99mPE8NAIsGgQqo4ogyZR\nj5N2AsXDbaJLcm5fqdiqPBJH5XHktqtNuDryrh3Sd2gH/ZGjLMzWRlXPT91LPKN9\n4EIhq+A0VO69I3+sUYA66yMuq1BzrFiGAcOQGJkO4uhj+DWmuxWRPEEZghlcKhIs\nVd6Bo3QApaDRzGqkrrYoLNcOh2ALKrKfZdHYCRV7eo45Xw4NkbO6+1jhStA1Fb8e\nw67NJT2xAgMBAAECggEAJGGfpWMvw4mtpXoLWmXo3l0PwucfXH1iWn69+wLOE1nY\nWDlzPaFm5BfIGQwLSJ+sVU4wE0wFuGLFbg6zvu8kxlzeTG6tTyCUNEnlvmoYU7X3\nQQMCsyZAzRlFLrAPslsJ5oIt/OvAsfzmiSOUpQYsA9aZ/iaLmoxQSwHSL/qwMhFK\niiJgfdvQm5r8ieeM+7345hAS7r1iFxfKuLqnL6EmcxtsTfPy+R+3/F2hBlUUoNF5\nuhBazw27Cc7nM/m5lKH8yuUKXldtLr6zK5svikU+lws/NgoGZyPgX1CtD+B7hjzO\nrr+og6sUR0DwA8TW+vhfF1wtAbam1WtY6IaOceJ6+QKBgQD+kBcfchkSod97EHQ6\nHiKhJ1zRO9a4LT56B2KrwwNHk9dhASHYb9JZKR8Ma5HsG40Qmd9D9ztNxJlzd9RA\nZp4FUPFdpoxfLQ3n5rKyzg5OpW5VGNivM653p4mCmiaxMxFt4gxZVen39CKsZwDB\nnAL0TTbrnkkWsIDzXbnv0RowRQKBgQDBvKYHF5+X6uKdKJkTHEY8MEsd/EjhrSGL\n4OyvUdElcNNygYlv8gy5dhqJX/zma4BUvvK1uDtAO8x7SQ5cxK2eIKtqvNFP3ORh\nk19IF3jKYWoSFF9ALgzcgaE+SkteqsBw8ONLqGgHYRKgFSP2q2JBIrgKJQLZ2z62\nDwzEPVW8fQKBgBHDQinKj19SdkKjEkkf4zC1i296KnBtj8d6DnOHxwnOkh/NsWvl\n2ZqpGOaH9wWvonc/FWorrTKu/jolaWUZA/vA+yaawX6+qRK+cUeywyLPvlQnyK7o\n/0qQITNAyGRi+NtfA5eUPCA2I9k90rqvxTEA1k04nUb9B/JzXs8SGy61AoGACYue\n7oiGb3i+M5oVeLCS8VI70T1l5eCe34J0hurUEDEv6dtiByb444ZjJlOZZUz0pLhH\nwxZRrQeFOqnN0FpMZ5caewbUlUe/5OLa9fVaGTaVgFCKpOHf9llYtXX5oq9tDeOA\nf3DLt1lcDpEcFYI6NBVe1fke29cGjvfM3DpdaA0CgYB/yUZ/rtfI0YSPQreEadHp\n5ECIkawNzqSIDNg8OFAtSU2oM9VKCDFCNt5J2lL1YLI3/3YsKRa5iP4JCO0+Q/Gv\nT7WmlKRzknv2C8UqL1+6js4ePzEZAqE5y/erB+MGK6mHzGMW7ZwX+azZr/P/x2Ed\n3BrqDYXuhrh17W2TJGMJqg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "astrolife@opportune-sylph-424309-p6.iam.gserviceaccount.com",
+  "client_id": "114038674771437657957",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/astrolife%40opportune-sylph-424309-p6.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

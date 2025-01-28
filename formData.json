@@ -1,0 +1,74 @@
+[
+  {
+    "firstName": "Nittala",
+    "lastName": "Sai Krishna Vamsi",
+    "phone": "08309920729",
+    "email": "snittala@gitam.in",
+    "service": "Service 1",
+    "date": "2025-01-11"
+  },
+  {
+    "firstName": "Nittala",
+    "lastName": "Sai Krishna Vamsi",
+    "phone": "08309920729",
+    "email": "snittala@gitam.in",
+    "service": "Service 1",
+    "date": "2025-01-19"
+  },
+  {
+    "firstName": "Nittala",
+    "lastName": "Sai Krishna Vamsi",
+    "phone": "08309920729",
+    "email": "snittala@gitam.in",
+    "service": "Service 1",
+    "date": "2025-01-19"
+  },
+  {
+    "firstName": "Nsn",
+    "lastName": "Murthy",
+    "phone": "9866825145",
+    "email": "snittala@gitam.in",
+    "service": "Service 3",
+    "date": "2025-01-21"
+  },
+  {
+    "firstName": "Pavan",
+    "lastName": "Kalyan",
+    "phone": "9392316482",
+    "email": "snittala@gitam.in",
+    "service": "Service 3",
+    "date": "2025-01-22"
+  },
+  {
+    "firstName": "Pavan",
+    "lastName": "Kalyan",
+    "phone": "9392316482",
+    "email": "snittala@gitam.in",
+    "service": "Service 2",
+    "date": "2025-06-17"
+  },
+  {
+    "firstName": "Pavan",
+    "lastName": "Kalyan",
+    "phone": "9392316482",
+    "email": "snittala@gitam.in",
+    "service": "Service 2",
+    "date": "2025-01-30"
+  },
+  {
+    "firstName": "Pavan",
+    "lastName": "Kalyan",
+    "phone": "9392316482",
+    "email": "snittala@gitam.in",
+    "service": "Pooja",
+    "date": "2025-01-30"
+  },
+  {
+    "firstName": "Pavan",
+    "lastName": "Kalyan",
+    "phone": "9392316482",
+    "email": "snittala@gitam.in",
+    "service": "Abhishekam",
+    "date": "2025-01-22"
+  }
+]
