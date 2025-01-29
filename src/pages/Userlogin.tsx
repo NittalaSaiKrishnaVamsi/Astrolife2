@@ -17,38 +17,33 @@ const UserLogin: React.FC = () => {
     password: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
-    setErrors({ ...errors, [id]: "" }); // Clear error message on change
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // Validation rules
-    const newErrors: { [key: string]: string } = {};
-
+  
+    // Ensure newErrors has correct structure
+    const newErrors: { email: string; password: string } = { email: "", password: "" };
+  
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid.";
     }
-
+  
     if (!formData.password.trim()) {
       newErrors.password = "Password is required.";
     } else if (formData.password.length < 6) {
       newErrors.password = "Password must be at least 6 characters long.";
     }
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+  
+    if (newErrors.email || newErrors.password) {
+      setErrors(newErrors); // ✅ Now matches expected type
       return;
     }
-
+  
     // Proceed with login logic
     alert("Login successful!");
   };
+  
 
   return (
     <motion.div
