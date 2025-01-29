@@ -12,22 +12,23 @@ const UserLogin: React.FC = () => {
     password: "",
   });
 
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<{ email: string; password: string }>({
     email: "",
     password: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
     setErrors({ ...errors, [id]: "" }); // Clear error message on change
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Validation rules
-    const newErrors = {};
+    const newErrors: { [key: string]: string } = {};
+
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -61,29 +62,29 @@ const UserLogin: React.FC = () => {
         autoPlay
         muted
         loop
-        className="absolute inset-0 w-full h-full object-cover z-0 "
+        className="absolute inset-0 w-full h-full object-cover z-0"
       >
         <source src="/videos/astrology-background.mp4" type="video/mp4" />
       </video>
 
       {/* Overlay */}
-      <div className="absolute inset-0  opacity-20 z-10"></div>
+      <div className="absolute inset-0 bg-black opacity-20 z-10"></div>
 
       {/* Home and Signup Buttons */}
-<div className="absolute top-4 right-4 z-20 flex space-x-4"> {/* Added flex container */}
-  <Link
-    href="/"
-    className="bg-white text-orange-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-md transition duration-200"
-  >
-    Home
-  </Link>
-  <Link
-    href="/UserSignup" 
-    className="bg-white text-orange-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-md transition duration-200"
-  >
-    Signup
-  </Link>
-</div>
+      <div className="absolute top-4 right-4 z-20 flex space-x-4">
+        <Link
+          href="/"
+          className="bg-white text-orange-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-md transition duration-200"
+        >
+          Home
+        </Link>
+        <Link
+          href="/UserSignup"
+          className="bg-white text-orange-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-md transition duration-200"
+        >
+          Signup
+        </Link>
+      </div>
 
       {/* Login Form */}
       <div className="bg-white/70 p-8 rounded-lg shadow-lg text-gray-800 max-w-md w-full relative z-20 backdrop-blur-md">
@@ -110,6 +111,7 @@ const UserLogin: React.FC = () => {
             User Login
           </motion.h1>
         </div>
+
         <motion.form
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -117,6 +119,7 @@ const UserLogin: React.FC = () => {
           className="space-y-6"
           onSubmit={handleSubmit}
         >
+          {/* Email Field */}
           <div className="relative">
             <label
               htmlFor="email"
@@ -124,37 +127,18 @@ const UserLogin: React.FC = () => {
             >
               EMAIL
             </label>
-            <div className="flex items-center border-2 border-orange-800 rounded-lg overflow-hidden">
-              <span className="p-2 text-black">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                  />
-                </svg>
-              </span>
-              <input
-                type="email"
-                id="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="flex-1 p-2 bg-transparent outline-none text-black placeholder-black"
-                placeholder="Enter your email"
-              />
-            </div>
-            {errors.email && (
-              <p className="text-red-600 text-sm mt-1">{errors.email}</p>
-            )}
+            <input
+              type="email"
+              id="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full p-2 border-2 border-orange-800 rounded-lg bg-transparent outline-none text-black placeholder-black"
+              placeholder="Enter your email"
+            />
+            {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email}</p>}
           </div>
 
+          {/* Password Field */}
           <div className="relative">
             <label
               htmlFor="password"
@@ -162,37 +146,18 @@ const UserLogin: React.FC = () => {
             >
               PASSWORD
             </label>
-            <div className="flex items-center border-2 border-orange-800 rounded-lg overflow-hidden">
-              <span className="p-2 text-black">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
-                  />
-                </svg>
-              </span>
-              <input
-                type="password"
-                id="password"
-                value={formData.password}
-                onChange={handleChange}
-                className="flex-1 p-2 bg-transparent outline-none text-black placeholder-black"
-                placeholder="Enter your password"
-              />
-            </div>
-            {errors.password && (
-              <p className="text-red-600 text-sm mt-1">{errors.password}</p>
-            )}
+            <input
+              type="password"
+              id="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full p-2 border-2 border-orange-800 rounded-lg bg-transparent outline-none text-black placeholder-black"
+              placeholder="Enter your password"
+            />
+            {errors.password && <p className="text-red-600 text-sm mt-1">{errors.password}</p>}
           </div>
 
+          {/* Remember Me & Forgot Password */}
           <div className="flex items-center justify-between text-orange-800 text-sm">
             <label className="flex items-center space-x-2">
               <input type="checkbox" className="form-checkbox h-4 w-4" />
@@ -203,6 +168,7 @@ const UserLogin: React.FC = () => {
             </a>
           </div>
 
+          {/* Login Button */}
           <button
             type="submit"
             className="w-full py-2 bg-white text-orange-700 font-bold rounded-lg hover:bg-gray-200 transition"
