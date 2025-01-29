@@ -56,7 +56,7 @@ const Carousel = () => {
     }
 
     return () => clearInterval(interval);
-  }, []);
+  }, [slides.length]); // Add slides.length as a dependency
 
   return (
     <div className="relative w-full h-[637px] overflow-hidden">

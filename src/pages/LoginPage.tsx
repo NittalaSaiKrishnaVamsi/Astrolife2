@@ -17,17 +17,17 @@ const LoginPage = () => {
     password: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
     setErrors({ ...errors, [id]: "" }); // Clear error message on change
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Validation rules
-    const newErrors = {};
+    const newErrors: { username?: string; password?: string } = {};
     if (!formData.username.trim()) {
       newErrors.username = "Username is required.";
     }
@@ -68,20 +68,20 @@ const LoginPage = () => {
       <div className="absolute inset-0 z-10"></div>
 
       {/* Home and Signup Buttons */}
-<div className="absolute top-4 right-4 z-20 flex space-x-4"> {/* Added flex container */}
-  <Link
-    href="/"
-    className="bg-white text-orange-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-md transition duration-200"
-  >
-    Home
-  </Link>
-  <Link
-    href="/signup" 
-    className="bg-white text-orange-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-md transition duration-200"
-  >
-    Signup
-  </Link>
-</div>
+      <div className="absolute top-4 right-4 z-20 flex space-x-4">
+        <Link
+          href="/"
+          className="bg-white text-orange-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-md transition duration-200"
+        >
+          Home
+        </Link>
+        <Link
+          href="/signup"
+          className="bg-white text-orange-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-md transition duration-200"
+        >
+          Signup
+        </Link>
+      </div>
 
       {/* Login Form */}
       <div className="bg-white/70 p-8 rounded-lg shadow-lg text-gray-800 max-w-md w-full relative z-20 backdrop-blur-md">
