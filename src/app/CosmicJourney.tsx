@@ -83,10 +83,12 @@ const CosmicJourney: React.FC = () => {
           <p className="text-gray-600 mt-2">
             Seek guidance, find answers, and illuminate your path
           </p>
-          <img
+          <Image
             src="/images/astrologer-image.png"
             alt="Astrologer"
-            className="mx-auto rounded-lg w-48 h-auto mt-4"
+            className="mx-auto rounded-lg"
+            width={350}
+            height={600}
           />
           <button className="mt-4 bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-md transition duration-150 ease-in-out">
             Consult Now

@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -22,50 +23,33 @@ const Footer = () => {
         >
           {/* Logo and About Section */}
           <div style={{ flex: "1", minWidth: "250px" }}>
-            <img
+            <Image
               src="/images/Logo.png"
               alt="Sunshine Astro Logo"
-              style={{ width: "300px", marginBottom: "15px" }}
+              width={300}
+              height={100}
+              style={{ marginBottom: "15px" }}
             />
             <p style={{ fontSize: "14px", lineHeight: "1.5" }}>
-              Astro Services offers professional astrology consultations, helping people understand their destinies and make informed life choices.
+              Astro Services offers professional astrology consultations,
+              helping people understand their destinies and make informed life
+              choices.
             </p>
           </div>
 
           {/* Quick Links */}
           <div style={{ flex: "1", minWidth: "150px" }}>
-            <h4 style={{ marginBottom: "15px", fontWeight: "bold" }}>Quick Links</h4>
+            <h4 style={{ marginBottom: "15px", fontWeight: "bold" }}>
+              Quick Links
+            </h4>
             <ul style={{ listStyle: "none", padding: 0, lineHeight: "1.8" }}>
-              <li>
-                <a href="#" style={{ textDecoration: "none", color: "white" }}>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" style={{ textDecoration: "none", color: "white" }}>
-                  Consult
-                </a>
-              </li>
-              <li>
-                <a href="#" style={{ textDecoration: "none", color: "white" }}>
-                  Horoscope
-                </a>
-              </li>
-              <li>
-                <a href="#" style={{ textDecoration: "none", color: "white" }}>
-                  Astrology
-                </a>
-              </li>
-              <li>
-                <a href="#" style={{ textDecoration: "none", color: "white" }}>
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="#" style={{ textDecoration: "none", color: "white" }}>
-                  About Us
-                </a>
-              </li>
+              {["Home", "Consult", "Horoscope", "Astrology", "Services", "About Us"].map((item) => (
+                <li key={item}>
+                  <a href="#" style={{ textDecoration: "none", color: "white" }}>
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -75,21 +59,13 @@ const Footer = () => {
               Customer Support
             </h4>
             <ul style={{ listStyle: "none", padding: 0, lineHeight: "1.8" }}>
-              <li>
-                <a href="#" style={{ textDecoration: "none", color: "white" }}>
-                  Help Center
-                </a>
-              </li>
-              <li>
-                <a href="#" style={{ textDecoration: "none", color: "white" }}>
-                  Contact Us
-                </a>
-              </li>
-              <li>
-                <a href="#" style={{ textDecoration: "none", color: "white" }}>
-                  FAQs
-                </a>
-              </li>
+              {["Help Center", "Contact Us", "FAQs"].map((item) => (
+                <li key={item}>
+                  <a href="#" style={{ textDecoration: "none", color: "white" }}>
+                    {item}
+                  </a>
+                </li>
+              ))}
               <li>We are now available 24x7</li>
             </ul>
           </div>
@@ -101,7 +77,10 @@ const Footer = () => {
             </h4>
             <ul style={{ listStyle: "none", padding: 0, lineHeight: "1.8" }}>
               <li>
-                <a href="https://www.facebook.com/profile.php?id=61570851951757" style={{ textDecoration: "none", color: "white" }}>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61570851951757"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
                   Facebook
                 </a>
               </li>
@@ -111,12 +90,18 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="https://www.instagram.com/sunshinecosma/" style={{ textDecoration: "none", color: "white" }}>
+                <a
+                  href="https://www.instagram.com/sunshinecosma/"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
                   Instagram
                 </a>
               </li>
               <li>
-                <a href="https://www.youtube.com/channel/UCN7AV_ZzGuushLRJBfzeycA" style={{ textDecoration: "none", color: "white" }}>
+                <a
+                  href="https://www.youtube.com/channel/UCN7AV_ZzGuushLRJBfzeycA"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
                   YouTube
                 </a>
               </li>
@@ -137,17 +122,23 @@ const Footer = () => {
 
         {/* App Store and Newsletter */}
         <div style={{ marginTop: "40px", textAlign: "center" }}>
-          <h4 style={{ fontWeight: "bold", marginBottom: "10px" }}>Coming Soon on</h4>
-          <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
-            <img
+          <h4 style={{ fontWeight: "bold", marginBottom: "10px" }}>
+            Coming Soon on
+          </h4>
+          <div
+            style={{ display: "flex", justifyContent: "center", gap: "20px" }}
+          >
+            <Image
               src="/images/google-play-badge.png"
               alt="Google Play Store"
-              style={{ height: "50px" }}
+              width={135}
+              height={50}
             />
-            <img
+            <Image
               src="/images/app-store-badge.png"
               alt="Apple App Store"
-              style={{ height: "50px" }}
+              width={135}
+              height={50}
             />
           </div>
           <div style={{ marginTop: "20px" }}>
@@ -155,9 +146,17 @@ const Footer = () => {
               Subscribe to Our Newsletter
             </h4>
             <p>
-              Get updates on new services, special offers, and astrological insights delivered to your inbox.
+              Get updates on new services, special offers, and astrological
+              insights delivered to your inbox.
             </p>
-            <div style={{ display: "flex", justifyContent: "center", gap: "10px", marginTop: "10px" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "10px",
+                marginTop: "10px",
+              }}
+            >
               <input
                 type="email"
                 placeholder="Enter your email"
@@ -198,7 +197,8 @@ const Footer = () => {
           <p style={{ fontSize: "12px", lineHeight: "1.5" }}>
             &copy; 2024 Sunshine Astro. All Rights Reserved.
             <br />
-            Your trusted partner for astrological guidance and spiritual insights.
+            Your trusted partner for astrological guidance and spiritual
+            insights.
           </p>
         </div>
       </div>

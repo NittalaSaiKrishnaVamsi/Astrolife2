@@ -17,33 +17,33 @@ const UserLogin: React.FC = () => {
     password: "",
   });
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+    setErrors({ ...errors, [id]: "" }); // Clear error message on change
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
-    // Ensure newErrors has correct structure
-    const newErrors: { email: string; password: string } = { email: "", password: "" };
-  
+
+    const newErrors: { email?: string; password?: string } = {}; // Use const instead of let
+
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid.";
     }
-  
+
     if (!formData.password.trim()) {
       newErrors.password = "Password is required.";
     } else if (formData.password.length < 6) {
       newErrors.password = "Password must be at least 6 characters long.";
     }
-  
-    if (newErrors.email || newErrors.password) {
-      setErrors(newErrors); // ✅ Now matches expected type
-      return;
-    }
-  
-    // Proceed with login logic
+
+    
+
     alert("Login successful!");
   };
-  
 
   return (
     <motion.div
@@ -52,7 +52,6 @@ const UserLogin: React.FC = () => {
       transition={{ duration: 0.5 }}
       className="h-screen relative flex items-center justify-center overflow-hidden"
     >
-      {/* Background Video */}
       <video
         autoPlay
         muted
@@ -62,10 +61,8 @@ const UserLogin: React.FC = () => {
         <source src="/videos/astrology-background.mp4" type="video/mp4" />
       </video>
 
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-20 z-10"></div>
 
-      {/* Home and Signup Buttons */}
       <div className="absolute top-4 right-4 z-20 flex space-x-4">
         <Link
           href="/"
@@ -81,7 +78,6 @@ const UserLogin: React.FC = () => {
         </Link>
       </div>
 
-      {/* Login Form */}
       <div className="bg-white/70 p-8 rounded-lg shadow-lg text-gray-800 max-w-md w-full relative z-20 backdrop-blur-md">
         <div className="text-center mb-6">
           <motion.div
@@ -114,7 +110,6 @@ const UserLogin: React.FC = () => {
           className="space-y-6"
           onSubmit={handleSubmit}
         >
-          {/* Email Field */}
           <div className="relative">
             <label
               htmlFor="email"
@@ -133,7 +128,6 @@ const UserLogin: React.FC = () => {
             {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email}</p>}
           </div>
 
-          {/* Password Field */}
           <div className="relative">
             <label
               htmlFor="password"
@@ -152,7 +146,6 @@ const UserLogin: React.FC = () => {
             {errors.password && <p className="text-red-600 text-sm mt-1">{errors.password}</p>}
           </div>
 
-          {/* Remember Me & Forgot Password */}
           <div className="flex items-center justify-between text-orange-800 text-sm">
             <label className="flex items-center space-x-2">
               <input type="checkbox" className="form-checkbox h-4 w-4" />
@@ -163,7 +156,6 @@ const UserLogin: React.FC = () => {
             </a>
           </div>
 
-          {/* Login Button */}
           <button
             type="submit"
             className="w-full py-2 bg-white text-orange-700 font-bold rounded-lg hover:bg-gray-200 transition"

@@ -1,10 +1,8 @@
 "use client";
 import '../app/globals.css';
 import React, { useState } from 'react';
-import Header from '../app/Header'; 
+import Header from '../app/Header';
 import Footer from '../app/Footer';
-import Image from 'next/image';
- // Assuming you have types defined
 
 // Define interface for formData
 interface FormData {
@@ -19,6 +17,13 @@ interface FormData {
   latitude: string;
   longitude: string;
   timezone: string;
+}
+
+// Define interface for Kundli data
+interface KundliData {
+  // Add relevant fields based on the API response
+  horoscope: string; // Example field
+  // Other fields like birth chart details can be added here
 }
 
 const FreeKundli: React.FC = () => {
@@ -97,97 +102,6 @@ const FreeKundli: React.FC = () => {
                 Get instant & accurate Janam Kundli with detailed predictions and analysis.
               </p>
             </div>
-            <div>
-              <div className="mt-10">
-                {/* Decorative image grid */}
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none lg:absolute lg:inset-y-0 lg:max-w-7xl lg:mx-auto lg:w-full"
-                >
-                  <div className="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8">
-                    <div className="flex items-center space-x-6 lg:space-x-8">
-                      <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
-                        <div className="w-44 h-64 rounded-lg overflow-hidden sm:opacity-0 lg:opacity-100">
-                          <Image
-                            src="/images/kundli1.jpg" // Replace with actual image
-                            alt=""
-                            className="w-full h-full object-center object-cover"
-                            width={176}
-                            height={256}
-                          />
-                        </div>
-                        <div className="w-44 h-64 rounded-lg overflow-hidden">
-                          <Image
-                            src="/images/kundli2.jpg" // Replace with actual image
-                            alt=""
-                            className="w-full h-full object-center object-cover"
-                            width={176}
-                            height={256}
-                          />
-                        </div>
-                      </div>
-                      <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
-                        <div className="w-44 h-64 rounded-lg overflow-hidden">
-                          <Image
-                            src="/images/kundli3.jpg" // Replace with actual image
-                            alt=""
-                            className="w-full h-full object-center object-cover"
-                            width={176}
-                            height={256}
-                          />
-                        </div>
-                        <div className="w-44 h-64 rounded-lg overflow-hidden">
-                          <Image
-                            src="/images/kundli4.jpg" // Replace with actual image
-                            alt=""
-                            className="w-full h-full object-center object-cover"
-                            width={176}
-                            height={256}
-                          />
-                        </div>
-                        <div className="w-44 h-64 rounded-lg overflow-hidden">
-                          <Image
-                            src="/images/kundli5.jpg" // Replace with actual image
-                            alt=""
-                            className="w-full h-full object-center object-cover"
-                            width={176}
-                            height={256}
-                          />
-                        </div>
-                      </div>
-                      <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
-                        <div className="w-44 h-64 rounded-lg overflow-hidden">
-                          <Image
-                            src="/images/kundli6.jpg" // Replace with actual image
-                            alt=""
-                            className="w-full h-full object-center object-cover"
-                            width={176}
-                            height={256}
-                          />
-                        </div>
-                        <div className="w-44 h-64 rounded-lg overflow-hidden">
-                          <Image
-                            src="/images/kundli7.jpg" // Replace with actual image
-                            alt=""
-                            className="w-full h-full object-center object-cover"
-                            width={176}
-                            height={256}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <a 
-  href="#" 
-  className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-orange-600 hover:bg-orange-50"
->
-  Get Started
-</a>
-
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -200,14 +114,11 @@ const FreeKundli: React.FC = () => {
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold text-gray-800">
                 Free Kundli Online - Get Your Detailed Birth Chart with Predictions
-                <div className="flex justify-center mt-2 space-x-4">
-                  {/* ... ornaments ... */}
-                </div>
               </h2>
             </div>
             <div className="prose lg:prose-lg mx-auto">
               <p>
-                {/* ... your content here ... */}
+                {/* Your content here */}
               </p>
             </div>
           </div>
@@ -215,16 +126,11 @@ const FreeKundli: React.FC = () => {
           {/* Form Section */}
           <div className="mt-12">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-800">
-                GENERATE YOUR HOROSCOPE
-                <div className="flex justify-center mt-2 space-x-4">
-                  {/* ... ornaments ... */}
-                </div>
-              </h2>
+              <h2 className="text-2xl font-bold text-gray-800">GENERATE YOUR HOROSCOPE</h2>
             </div>
             <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {/* ... input fields ... */}
+                {/* Form Inputs */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                     Name
@@ -254,10 +160,9 @@ const FreeKundli: React.FC = () => {
                     <option value="female">Female</option>
                   </select>
                 </div>
-                {/* ... other input fields ... */}
+                {/* Additional fields */}
               </div>
 
-              {/* Submit Button with Loading State */}
               <button
                 type="submit"
                 className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-md mt-4"
@@ -266,7 +171,6 @@ const FreeKundli: React.FC = () => {
                 {isLoading ? 'Generating...' : 'Generate Horoscope'}
               </button>
 
-              {/* Display Error Message */}
               {error && (
                 <div className="text-red-500 mt-2">{error}</div>
               )}
@@ -276,40 +180,11 @@ const FreeKundli: React.FC = () => {
           {/* Display Kundli Data */}
           {kundliData && (
             <div className="mt-12">
-              {/* ... display kundliData ... */}
+              <h3 className="text-xl font-bold">Your Kundli:</h3>
+              <p>{kundliData.horoscope}</p>
+              {/* Add other details from the 'kundliData' */}
             </div>
           )}
-        </div>
-      </div>
-
-      {/* AstroLife on YouTube Section */}
-      <div className="bg-gray-100 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              Subscribe to AstroLife on YouTube
-            </h2>
-            <p className="mt-4 text-lg leading-6 text-gray-500">
-              {/* ... your YouTube channel description ... */}
-            </p>
-            <div className="mt-8 flex justify-center">
-              <div className="inline-flex rounded-md shadow">
-                <a
-                  href="#" // Replace with your YouTube channel link
-                  className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
-                >
-                  <Image
-                    src="/images/youtube-logo.png" // Replace with YouTube logo
-                    alt="YouTube logo"
-                    width={20}
-                    height={20}
-                    className="mr-2"
-                  />
-                  Subscribe
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 

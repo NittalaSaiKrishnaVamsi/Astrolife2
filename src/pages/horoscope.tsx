@@ -1,9 +1,9 @@
 "use client";
-import '../app/globals.css';
-import React, { useState, useEffect } from 'react';
-import Header from '../app/Header';
-import Footer from '../app/Footer';
-import Image from 'next/image';
+import "../app/globals.css";
+import React, { useState, useEffect, useCallback } from "react";
+import Header from "../app/Header";
+import Footer from "../app/Footer";
+import Image from "next/image";
 
 interface Horoscope {
   date: string;
@@ -12,14 +12,14 @@ interface Horoscope {
 }
 
 const HoroscopePage: React.FC = () => {
-  const [selectedSign, setSelectedSign] = useState('');
+  const [selectedSign, setSelectedSign] = useState("");
   const [horoscopeData, setHoroscopeData] = useState<Horoscope | null>(null);
 
   const handleSignChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedSign(event.target.value);
   };
 
-  const fetchHoroscope = async () => {
+  const fetchHoroscope = useCallback(async () => {
     if (!selectedSign) return;
 
     try {
@@ -29,13 +29,13 @@ const HoroscopePage: React.FC = () => {
       const data = await response.json();
       setHoroscopeData(data);
     } catch (error) {
-      console.error('Error fetching horoscope:', error);
+      console.error("Error fetching horoscope:", error);
     }
-  };
+  }, [selectedSign]);
 
   useEffect(() => {
     fetchHoroscope();
-  }, [selectedSign]);
+  }, [fetchHoroscope]);
 
   return (
     <div>
@@ -65,7 +65,7 @@ const HoroscopePage: React.FC = () => {
                       <div className="flex-shrink-0 grid grid-cols-1 gap-y-6 lg:gap-y-8">
                         <div className="w-44 h-64 rounded-lg overflow-hidden sm:opacity-0 lg:opacity-100">
                           <Image
-                            src="/images/kundli1.jpg" // Replace with actual image path
+                            src="/images/kundli1.jpg"
                             alt=""
                             className="w-full h-full object-center object-cover"
                             width={176}
@@ -74,16 +74,14 @@ const HoroscopePage: React.FC = () => {
                         </div>
                         <div className="w-44 h-64 rounded-lg overflow-hidden">
                           <Image
-                            src="/images/kundli2.jpg" // Replace with actual image path
+                            src="/images/kundli2.jpg"
                             alt=""
                             className="w-full h-full object-center object-cover"
                             width={176}
                             height={256}
                           />
                         </div>
-                        {/*... other images... */}
                       </div>
-                      {/*... other image grids... */}
                     </div>
                   </div>
                 </div>
@@ -139,10 +137,6 @@ const HoroscopePage: React.FC = () => {
           </div>
         )}
       </div>
-
-      {/* AstroLife on YouTube Section - This is the part you didn't provide 
-          If you have the code for this section, please provide it, and I'll add it here.
-      */}
 
       <Footer />
     </div>
