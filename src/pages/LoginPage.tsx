@@ -7,27 +7,34 @@ import { motion } from "framer-motion";
 import "../app/globals.css";
 
 const LoginPage = () => {
-  const [formData, setFormData] = useState({
+  // Define types for form data and errors
+  type FormState = {
+    username: string;
+    password: string;
+  };
+
+  const [formData, setFormData] = useState<FormState>({
     username: "",
     password: "",
   });
 
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<FormState>({
     username: "",
     password: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
-    setErrors({ ...errors, [id]: "" }); // Clear error message on change
+    setFormData((prev) => ({ ...prev, [id]: value }));
+    setErrors((prev) => ({ ...prev, [id]: "" })); // Clear error message on change
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validation rules
-    const newErrors: { username?: string; password?: string } = {};
+    const newErrors: FormState = { username: "", password: "" };
+
     if (!formData.username.trim()) {
       newErrors.username = "Username is required.";
     }
@@ -38,7 +45,7 @@ const LoginPage = () => {
       newErrors.password = "Password must be at least 6 characters long.";
     }
 
-    if (Object.keys(newErrors).length > 0) {
+    if (newErrors.username || newErrors.password) {
       setErrors(newErrors);
       return;
     }
@@ -63,9 +70,6 @@ const LoginPage = () => {
       >
         <source src="/videos/astrology-background.mp4" type="video/mp4" />
       </video>
-
-      {/* Overlay */}
-      <div className="absolute inset-0 z-10"></div>
 
       {/* Home and Signup Buttons */}
       <div className="absolute top-4 right-4 z-20 flex space-x-4">
@@ -123,27 +127,6 @@ const LoginPage = () => {
               USERNAME
             </label>
             <div className="flex items-center border-2 border-orange-800 rounded-lg overflow-hidden">
-              <span className="p-2 text-black">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 9A3.75 3.75 0 1112 5.25 3.75 3.75 0 0115.75 9z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 19.5a7.5 7.5 0 00-15 0"
-                  />
-                </svg>
-              </span>
               <input
                 type="text"
                 id="username"
@@ -166,27 +149,6 @@ const LoginPage = () => {
               PASSWORD
             </label>
             <div className="flex items-center border-2 border-orange-800 rounded-lg overflow-hidden">
-              <span className="p-2 text-black">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.5 10.5V7.875a4.125 4.125 0 10-9 0V10.5"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4.875 10.5h14.25M7.5 10.5h9"
-                  />
-                </svg>
-              </span>
               <input
                 type="password"
                 id="password"
