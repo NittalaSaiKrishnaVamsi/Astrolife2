@@ -7,27 +7,27 @@ import { motion } from "framer-motion";
 import "../app/globals.css";
 
 const UserLogin: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{ email: string; password: string }>({
     email: "",
     password: "",
   });
 
-  const [errors, setErrors] = useState<{ email: string; password: string }>({
-    email: "",
-    password: "",
-  });
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
-    setErrors({ ...errors, [id]: "" }); // Clear error message on change
+    setFormData((prev) => ({ ...prev, [id]: value }));
+    setErrors((prev) => ({ ...prev, [id]: "" })); 
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const newErrors: { email?: string; password?: string } = {}; // Use const instead of let
+   
+    const newErrors: { email?: string; password?: string } = {};
 
+    
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -40,9 +40,35 @@ const UserLogin: React.FC = () => {
       newErrors.password = "Password must be at least 6 characters long.";
     }
 
-    
+  
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
 
-    alert("Login successful!");
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+
+      alert("Login successful!");
+      localStorage.setItem("token", data.token);
+      window.location.href = "/dashboard";
+    } catch (error: any) {
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -50,71 +76,28 @@ const UserLogin: React.FC = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="h-screen relative flex items-center justify-center overflow-hidden"
+      className="h-screen flex items-center justify-center relative"
     >
-      <video
-        autoPlay
-        muted
-        loop
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      >
+      <video autoPlay muted loop className="absolute inset-0 w-full h-full object-cover">
         <source src="/videos/astrology-background.mp4" type="video/mp4" />
       </video>
 
-      <div className="absolute inset-0 bg-black opacity-20 z-10"></div>
+      <div className="absolute inset-0 bg-black opacity-20"></div>
 
-      <div className="absolute top-4 right-4 z-20 flex space-x-4">
-        <Link
-          href="/"
-          className="bg-white text-orange-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-md transition duration-200"
-        >
-          Home
-        </Link>
-        <Link
-          href="/UserSignup"
-          className="bg-white text-orange-600 hover:bg-gray-100 font-medium py-2 px-4 rounded-md transition duration-200"
-        >
-          Signup
-        </Link>
+      <div className="absolute top-4 right-4 flex space-x-4">
+        <Link href="/" className="bg-white text-orange-600 px-4 py-2 rounded-md">Home</Link>
+        <Link href="/UserSignup" className="bg-white text-orange-600 px-4 py-2 rounded-md">Signup</Link>
       </div>
 
-      <div className="bg-white/70 p-8 rounded-lg shadow-lg text-gray-800 max-w-md w-full relative z-20 backdrop-blur-md">
+      <div className="bg-white/80 p-8 rounded-lg shadow-lg max-w-md w-full backdrop-blur-md relative">
         <div className="text-center mb-6">
-          <motion.div
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <Image
-              src="/images/logo.png"
-              alt="AstroLife Logo"
-              width={150}
-              height={150}
-              className="mx-auto h-20 w-auto"
-            />
-          </motion.div>
-          <motion.h1
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-3xl font-bold text-orange-800 mt-4"
-          >
-            User Login
-          </motion.h1>
+          <Image src="/images/logo.png" alt="Logo" width={150} height={150} className="mx-auto h-20 w-auto" />
+          <h1 className="text-3xl font-bold text-orange-800 mt-4">User Login</h1>
         </div>
 
-        <motion.form
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="space-y-6"
-          onSubmit={handleSubmit}
-        >
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="relative">
-            <label
-              htmlFor="email"
-              className="absolute -top-3 left-4 bg-orange-600 px-2 text-white text-sm"
-            >
+            <label htmlFor="email" className="absolute -top-3 left-4 bg-orange-600 px-2 text-white text-sm">
               EMAIL
             </label>
             <input
@@ -122,17 +105,14 @@ const UserLogin: React.FC = () => {
               id="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full p-2 border-2 border-orange-800 rounded-lg bg-transparent outline-none text-black placeholder-black"
+              className="w-full p-2 border-2 border-orange-800 rounded-lg bg-transparent text-black placeholder-black outline-none"
               placeholder="Enter your email"
             />
             {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email}</p>}
           </div>
 
           <div className="relative">
-            <label
-              htmlFor="password"
-              className="absolute -top-3 left-4 bg-orange-600 px-2 text-white text-sm"
-            >
+            <label htmlFor="password" className="absolute -top-3 left-4 bg-orange-600 px-2 text-white text-sm">
               PASSWORD
             </label>
             <input
@@ -140,7 +120,7 @@ const UserLogin: React.FC = () => {
               id="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full p-2 border-2 border-orange-800 rounded-lg bg-transparent outline-none text-black placeholder-black"
+              className="w-full p-2 border-2 border-orange-800 rounded-lg bg-transparent text-black placeholder-black outline-none"
               placeholder="Enter your password"
             />
             {errors.password && <p className="text-red-600 text-sm mt-1">{errors.password}</p>}
@@ -151,18 +131,17 @@ const UserLogin: React.FC = () => {
               <input type="checkbox" className="form-checkbox h-4 w-4" />
               <span>Remember Me</span>
             </label>
-            <a href="#" className="underline">
-              Forgot password?
-            </a>
+            <a href="#" className="underline">Forgot password?</a>
           </div>
 
           <button
             type="submit"
-            className="w-full py-2 bg-white text-orange-700 font-bold rounded-lg hover:bg-gray-200 transition"
+            className="w-full py-2 bg-orange-700 text-white font-bold rounded-lg hover:bg-orange-600 transition"
+            disabled={loading}
           >
-            LOGIN
+            {loading ? "Logging in..." : "LOGIN"}
           </button>
-        </motion.form>
+        </form>
       </div>
     </motion.div>
   );
