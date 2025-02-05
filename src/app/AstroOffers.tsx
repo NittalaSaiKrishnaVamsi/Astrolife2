@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image'; // Assuming you're using Next.js
 
 const AstroOffers: React.FC = () => {
+  
   return (
     <div className="bg-gradient-to-b from-orange-50 to-white py-16 px-4 sm:px-6 lg:px-8 xl:px-16">
       <div className="max-w-7xl mx-auto">
